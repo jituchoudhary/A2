@@ -43,3 +43,47 @@ graph.add_edge(4, 0)
 # Perform BFS starting from vertex 0
 print("BFS Traversal:")
 graph.bfs(0)
+
+
+
+ #DFS
+#dfs code
+ 
+from collections import defaultdict
+
+
+class Graph:
+    def __init__(self):
+        self.graph = defaultdict(list)
+
+    def add_edge(self, u, v):
+        self.graph[u].append(v)
+        self.graph[v].append(u)
+
+    def dfs(self, start_vertex, visited=None):
+        if visited is None:
+            visited = set()
+
+        visited.add(start_vertex)
+        print(start_vertex, end=" ")
+
+        for neighbor in self.graph[start_vertex]:
+            if neighbor not in visited:
+                self.dfs(neighbor, visited)
+
+
+# Create a graph
+graph = Graph()
+
+# Add edges
+graph.add_edge(0, 1)
+graph.add_edge(0, 2)
+graph.add_edge(1, 2)
+graph.add_edge(2, 3)
+graph.add_edge(2, 4)
+graph.add_edge(3, 4)
+graph.add_edge(4, 0)
+
+# Perform DFS starting from vertex 0
+print("DFS Traversal:")
+graph.dfs(0)
